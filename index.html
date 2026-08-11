@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Game</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  .game {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+  }
+
+  #question {
+    font-size: 34px;
+    margin-bottom: 30px;
+  }
+
+  .answer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    border: 3px solid #555;
+    border-radius: 12px;
+    margin: 12px 0;
+    padding: 18px 25px;
+    font-size: 28px;
+  }
+
+  .number {
+    width: 50px;
+  }
+
+  .text {
+    flex: 1;
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  .points {
+    width: 80px;
+  }
+
+  .hidden .text,
+  .hidden .points {
+    visibility: hidden;
+  }
+
+  .controls {
+    margin-top: 30px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 12px 20px;
+    margin: 5px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+  <h1>🎉 BIRTHDAY GAME 🎉</h1>
+
+  <div id="question"></div>
+
+  <div id="answers"></div>
+
+  <div class="controls">
+    <button onclick="previousQuestion()">⬅ Previous</button>
+    <button onclick="nextQuestion()">Next Question ➡</button>
+  </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+  {
+    question: "What is your favorite dish?",
+    answers: [
+      ["Momo", 5],
+      ["Dal bhat", 4],
+      ["Chowmein", 3],
+      ["Biryani", 2],
+      ["Pizza", 1]
+    ]
+  },
+
+  {
+    question: "Name something Nyisher is really good at",
+    answers: [
+      ["Dancing", 5],
+      ["Taking care of kids", 4],
+      ["Singing", 3],
+      ["Driving", 2],
+      ["Bargaining", 1]
+    ]
+  }
+
+];
+
+let currentQuestion = 0;
+
+function showQuestion() {
+
+  const q = questions[currentQuestion];
+
+  document.getElementById("question").textContent = q.question;
+
+  const container = document.getElementById("answers");
+
+  container.innerHTML = "";
+
+  q.answers.forEach((answer, index) => {
+
+    const row = document.createElement("div");
+
+    row.className = "answer hidden";
+
+    row.innerHTML = `
+      <div class="number">${index + 1}</div>
+      <div class="text">${answer[0]}</div>
+      <div class="points">${answer[1]}</div>
+    `;
+
+    row.onclick = function() {
+      row.classList.toggle("hidden");
+    };
+
+    container.appendChild(row);
+
+  });
+
+}
+
+function nextQuestion() {
+
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    showQuestion();
+  }
+
+}
+
+function previousQuestion() {
+
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    showQuestion();
+  }
+
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
