@@ -530,7 +530,14 @@ function listenToGame() {
 
       revealed =
         data.revealed || [];
-
+if (data.wrongAnswerSignal) {
+    if (window.lastWrongAnswerSignal === undefined) {
+        window.lastWrongAnswerSignal = data.wrongAnswerSignal;
+    } else if (data.wrongAnswerSignal !== window.lastWrongAnswerSignal) {
+        window.lastWrongAnswerSignal = data.wrongAnswerSignal;
+        showWrongAnswer();
+    }
+}
       showAudienceQuestion();
 
     });
@@ -604,6 +611,25 @@ function playWrongSound() {
   oscillator.start();
   oscillator.stop(audioContext.currentTime + 0.25);
 }
+  function showWrongAnswer() {
+    const cross = document.createElement("div");
+
+    cross.textContent = "❌";
+
+    cross.style.position = "fixed";
+    cross.style.top = "50%";
+    cross.style.left = "50%";
+    cross.style.transform = "translate(-50%, -50%)";
+    cross.style.fontSize = "180px";
+    cross.style.zIndex = "9999";
+    cross.style.textAlign = "center";
+
+    document.body.appendChild(cross);
+
+    setTimeout(() => {
+        cross.remove();
+    }, 1500);
+  }
   function goFullscreen() {
   const element = document.documentElement;
 
