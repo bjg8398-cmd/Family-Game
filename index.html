@@ -378,9 +378,16 @@ function revealNext() {
 
   const answers = questions[currentQuestion].answers;
 
-  if (revealed.length < answers.length) {
+  const unrevealed = answers
+    .map((answer, index) => index)
+    .filter(index => !revealed.includes(index));
 
-    revealed.push(revealed.length);
+  if (unrevealed.length > 0) {
+
+    const randomIndex =
+      unrevealed[Math.floor(Math.random() * unrevealed.length)];
+
+    revealed.push(randomIndex);
 
     updateFirebase();
 
