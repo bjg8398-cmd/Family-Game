@@ -372,20 +372,21 @@ function revealAnswer(index) {
 
 /* REVEAL ALL */
 
-function revealAll() {
+/* REVEAL NEXT */
 
-  revealed = [];
+function revealNext() {
 
-  questions[currentQuestion].answers.forEach(
-    (answer, index) => {
-      revealed.push(index);
-    }
-  );
+  const answers = questions[currentQuestion].answers;
 
-  updateFirebase();
+  if (revealed.length < answers.length) {
+
+    revealed.push(revealed.length);
+
+    updateFirebase();
+
+  }
 
 }
-
 
 /* UPDATE FIREBASE */
 
