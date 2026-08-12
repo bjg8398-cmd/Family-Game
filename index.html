@@ -129,7 +129,7 @@ input {
       <button onclick="previousQuestion()">⬅ Previous</button>
       <button onclick="nextQuestion()">Next ➡</button>
       <button onclick="revealAll()">Reveal All</button>
-<button onclick="playWrongSound()">❌ WRONG ANSWER</button>
+<button onclick="wrongAnswer()">❌ WRONG ANSWER</button>
     </div> </div>
 
   </div>
@@ -596,7 +596,14 @@ function showAudienceQuestion() {
 
 }
 
-function playWrongSound() {
+function wrongAnswer() {
+  db.ref("familyGames/" + gameCode).update({
+    wrongAnswerSignal: Date.now()
+  });
+
+  playWrongSound();
+  }
+  function playWrongSound() {
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
   const oscillator = audioContext.createOscillator();
   const gain = audioContext.createGain();
