@@ -589,7 +589,6 @@ function showAudienceQuestion() {
   container.innerHTML = "";
 
   q.answers.forEach((answer, index) => {
-
     const row = document.createElement("div");
 
     row.className = "answer";
@@ -611,7 +610,9 @@ function showAudienceQuestion() {
 
       '</div>' +
 
-      '<div class="points">' +
+      '<div class="points ' +
+(isRevealed && index === revealed[revealed.length - 1] ? 'pop' : '') +
+'">' +
 
       (isRevealed
         ? answer[1] + " pts"
