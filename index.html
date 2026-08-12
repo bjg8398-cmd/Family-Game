@@ -530,13 +530,12 @@ function listenToGame() {
 
       revealed =
         data.revealed || [];
-if (data.wrongAnswerSignal) {
-    if (window.lastWrongAnswerSignal === undefined) {
-        window.lastWrongAnswerSignal = data.wrongAnswerSignal;
-    } else if (data.wrongAnswerSignal !== window.lastWrongAnswerSignal) {
-        window.lastWrongAnswerSignal = data.wrongAnswerSignal;
-        showWrongAnswer();
-    }
+if (
+  data.wrongAnswerSignal &&
+  data.wrongAnswerSignal !== window.lastWrongAnswerSignal
+) {
+  window.lastWrongAnswerSignal = data.wrongAnswerSignal;
+  showWrongAnswer();
 }
       showAudienceQuestion();
 
