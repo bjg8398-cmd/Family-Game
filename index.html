@@ -149,10 +149,10 @@ input {
 
     <div id="audienceGame" style="display:none;">
 
-      <div id="question"></div>
-      <div id="answers"></div>
+  <button id="fullscreenButton" onclick="goFullscreen()">⛶ FULL SCREEN</button>
 
-    </div>
+  <div id="question"></div>
+  <div id="answers"></div>
 
   </div>
 
@@ -587,7 +587,19 @@ function showAudienceQuestion() {
   });
 
 }
+}
+ 
+function goFullscreen() {
+  const element = document.documentElement;
 
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  }
+}
+
+</script>
 </script>
 
 </body>
