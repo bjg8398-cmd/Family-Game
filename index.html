@@ -6,75 +6,99 @@
 <title>Birthday Game</title>
 
 <style>
-  body {
-    margin: 0;
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
+body {
+  margin: 0;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
 
-  .game {
-    width: 90vw;
-    max-width: 1600px;
-    margin: auto;
-    padding: 3vh 3vw;
-    box-sizing: border-box;
-  }
+.game {
+  width: 90vw;
+  max-width: 1600px;
+  margin: auto;
+  padding: 3vh 3vw;
+  box-sizing: border-box;
+}
 
-  h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-  }
+h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
 
-  #question {
-    font-size: 34px;
-    margin-bottom: 30px;
-  }
+#question {
+  font-size: 34px;
+  margin: 30px 0;
+}
 
-  .answer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #222;
-    border: 3px solid #555;
-    border-radius: 12px;
-    margin: 12px 0;
-    padding: 18px 25px;
-    font-size: 28px;
-  }
+.answer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  border: 3px solid #555;
+  border-radius: 12px;
+  margin: 12px 0;
+  padding: 18px 25px;
+  font-size: 28px;
+  box-sizing: border-box;
+}
 
-  .number {
-    width: 50px;
-  }
+.number {
+  width: 50px;
+}
 
-  .text {
-    flex: 1;
-    text-align: left;
-    margin-left: 20px;
-  }
+.text {
+  flex: 1;
+  text-align: left;
+  margin-left: 20px;
+}
 
-  .points {
-    width: 80px;
-  }
+.points {
+  width: 80px;
+}
 
-  .hidden .text,
-  .hidden .points {
-    visibility: hidden;
-  }
+.hidden {
+  visibility: hidden;
+}
 
-  .controls {
-    margin-top: 30px;
-  }
+button {
+  font-size: 20px;
+  padding: 12px 20px;
+  margin: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-  button {
-    font-size: 20px;
-    padding: 12px 20px;
-    margin: 5px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-  }
+input {
+  font-size: 22px;
+  padding: 12px;
+  width: 180px;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+}
+
+#hostControls {
+  margin-top: 25px;
+}
+
+#gameCode {
+  font-size: 32px;
+  margin: 20px;
+  font-weight: bold;
+}
+
+#status {
+  font-size: 22px;
+  margin: 15px;
+}
+
+.screen {
+  margin-top: 50px;
+}
 </style>
 </head>
 
@@ -82,20 +106,91 @@
 
 <div class="game">
 
-  <h1>🎉 BIRTHDAY GAME 🎉</h1>
+  <h1>🎉 BIRTHDAY GAME 🎂</h1>
 
-  <div id="question"></div>
+  <div id="menu" class="screen">
+    <h2>Choose Screen</h2>
 
-  <div id="answers"></div>
+    <button onclick="startHost()">HOST</button>
+    <button onclick="startAudience()">AUDIENCE</button>
+  </div>
 
-  <div class="controls">
-    <button onclick="previousQuestion()">⬅ Previous</button>
-    <button onclick="nextQuestion()">Next Question ➡</button>
+  <div id="hostScreen" class="screen" style="display:none;">
+
+    <h2>HOST SCREEN</h2>
+
+    <div id="gameCode"></div>
+    <div id="status"></div>
+
+    <div id="hostQuestion"></div>
+    <div id="hostAnswers"></div>
+
+    <div id="hostControls">
+      <button onclick="previousQuestion()">⬅ Previous</button>
+      <button onclick="nextQuestion()">Next ➡</button>
+      <button onclick="revealAll()">Reveal All</button>
+    </div>
+
+  </div>
+
+  <div id="audienceScreen" class="screen" style="display:none;">
+
+    <div id="joinArea">
+      <h2>Enter Game Code</h2>
+
+      <input id="codeInput"
+             maxlength="6"
+             placeholder="CODE">
+
+      <br>
+
+      <button onclick="joinGame()">JOIN GAME</button>
+    </div>
+
+    <div id="audienceGame" style="display:none;">
+
+      <div id="question"></div>
+      <div id="answers"></div>
+
+    </div>
+
   </div>
 
 </div>
 
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
 <script>
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyD99604lgKq6eJb1xkqJPBECZMmju4x-4E",
+
+  authDomain: "live-quiz-game-79f0e.firebaseapp.com",
+
+  databaseURL:
+    "https://live-quiz-game-79f0e-default-rtdb.firebaseio.com",
+
+  projectId: "live-quiz-game-79f0e",
+
+  storageBucket:
+    "live-quiz-game-79f0e.firebasestorage.app",
+
+  messagingSenderId: "489513542029",
+
+  appId:
+    "1:489513542029:web:c9a61c48a4412408071dc4"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+
+/* QUESTIONS */
 
 const questions = [
 
@@ -123,15 +218,105 @@ const questions = [
 
 ];
 
-let currentQuestion = 0;
 
-function showQuestion() {
+let currentQuestion = 0;
+let revealed = [];
+let gameCode = "";
+let isHost = false;
+
+
+/* SCREEN SELECTION */
+
+function startHost() {
+
+  isHost = true;
+
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("hostScreen").style.display = "block";
+
+  createGame();
+}
+
+
+function startAudience() {
+
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("audienceScreen").style.display = "block";
+}
+
+
+/* CREATE GAME */
+
+function createGame() {
+
+  gameCode =
+    Math.floor(100000 + Math.random() * 900000).toString();
+
+  revealed = [];
+
+  const gameRef = db.ref("familyGames/" + gameCode);
+
+  gameRef.set({
+
+    currentQuestion: 0,
+
+    revealed: [],
+
+    active: true
+
+  })
+  .then(() => {
+
+    document.getElementById("gameCode").textContent =
+      "GAME CODE: " + gameCode;
+
+    document.getElementById("status").textContent =
+      "Waiting for audience...";
+
+    showHostQuestion();
+
+    listenForAudience();
+
+  })
+  .catch(error => {
+
+    alert("Could not create game: " + error.message);
+
+  });
+
+}
+
+
+/* HOST LISTENER */
+
+function listenForAudience() {
+
+  db.ref("familyGames/" + gameCode + "/active")
+    .on("value", snapshot => {
+
+      if (snapshot.val()) {
+
+        document.getElementById("status").textContent =
+          "Game is LIVE";
+
+      }
+
+    });
+
+}
+
+
+/* SHOW HOST QUESTION */
+
+function showHostQuestion() {
 
   const q = questions[currentQuestion];
 
-  document.getElementById("question").textContent = q.question;
+  document.getElementById("hostQuestion").innerHTML =
+    "<h2>" + q.question + "</h2>";
 
-  const container = document.getElementById("answers");
+  const container =
+    document.getElementById("hostAnswers");
 
   container.innerHTML = "";
 
@@ -139,16 +324,27 @@ function showQuestion() {
 
     const row = document.createElement("div");
 
-    row.className = "answer hidden";
+    row.className = "answer";
 
-    row.innerHTML = `
-      <div class="number">${index + 1}</div>
-      <div class="text">${answer[0]}</div>
-      <div class="points">${answer[1]}</div>
-    `;
+    row.innerHTML =
+
+      '<div class="number">' +
+      (index + 1) +
+      '</div>' +
+
+      '<div class="text">' +
+      answer[0] +
+      '</div>' +
+
+      '<div class="points">' +
+      answer[1] +
+      ' pts' +
+      '</div>';
 
     row.onclick = function() {
-      row.classList.toggle("hidden");
+
+      revealAnswer(index);
+
     };
 
     container.appendChild(row);
@@ -157,25 +353,240 @@ function showQuestion() {
 
 }
 
+
+/* REVEAL ANSWER */
+
+function revealAnswer(index) {
+
+  if (!revealed.includes(index)) {
+
+    revealed.push(index);
+
+  }
+
+  updateFirebase();
+
+}
+
+
+/* REVEAL ALL */
+
+function revealAll() {
+
+  revealed = [];
+
+  questions[currentQuestion].answers.forEach(
+    (answer, index) => {
+      revealed.push(index);
+    }
+  );
+
+  updateFirebase();
+
+}
+
+
+/* UPDATE FIREBASE */
+
+function updateFirebase() {
+
+  db.ref("familyGames/" + gameCode).update({
+
+    currentQuestion: currentQuestion,
+
+    revealed: revealed
+
+  });
+
+  updateHostDisplay();
+
+}
+
+
+/* HOST DISPLAY */
+
+function updateHostDisplay() {
+
+  const rows =
+    document.querySelectorAll("#hostAnswers .answer");
+
+  rows.forEach((row, index) => {
+
+    if (revealed.includes(index)) {
+
+      row.style.opacity = "1";
+
+    } else {
+
+      row.style.opacity = "0.45";
+
+    }
+
+  });
+
+}
+
+
+/* NEXT QUESTION */
+
 function nextQuestion() {
 
   if (currentQuestion < questions.length - 1) {
+
     currentQuestion++;
-    showQuestion();
+
+    revealed = [];
+
+    updateFirebase();
+
+    showHostQuestion();
+
   }
 
 }
+
+
+/* PREVIOUS QUESTION */
 
 function previousQuestion() {
 
   if (currentQuestion > 0) {
+
     currentQuestion--;
-    showQuestion();
+
+    revealed = [];
+
+    updateFirebase();
+
+    showHostQuestion();
+
   }
 
 }
 
-showQuestion();
+
+/* JOIN GAME */
+
+function joinGame() {
+
+  gameCode =
+    document.getElementById("codeInput")
+    .value.trim();
+
+  if (gameCode.length !== 6) {
+
+    alert("Please enter the 6-digit game code.");
+
+    return;
+
+  }
+
+  const gameRef =
+    db.ref("familyGames/" + gameCode);
+
+  gameRef.once("value")
+    .then(snapshot => {
+
+      if (!snapshot.exists()) {
+
+        alert("Game not found.");
+
+        return;
+
+      }
+
+      document.getElementById("joinArea")
+        .style.display = "none";
+
+      document.getElementById("audienceGame")
+        .style.display = "block";
+
+      listenToGame();
+
+    })
+    .catch(error => {
+
+      alert("Could not join game: " + error.message);
+
+    });
+
+}
+
+
+/* AUDIENCE LISTENER */
+
+function listenToGame() {
+
+  db.ref("familyGames/" + gameCode)
+    .on("value", snapshot => {
+
+      const data = snapshot.val();
+
+      if (!data) return;
+
+      currentQuestion =
+        data.currentQuestion || 0;
+
+      revealed =
+        data.revealed || [];
+
+      showAudienceQuestion();
+
+    });
+
+}
+
+
+/* SHOW AUDIENCE */
+
+function showAudienceQuestion() {
+
+  const q = questions[currentQuestion];
+
+  document.getElementById("question").textContent =
+    q.question;
+
+  const container =
+    document.getElementById("answers");
+
+  container.innerHTML = "";
+
+  q.answers.forEach((answer, index) => {
+
+    const row = document.createElement("div");
+
+    row.className = "answer";
+
+    const isRevealed =
+      revealed.includes(index);
+
+    row.innerHTML =
+
+      '<div class="number">' +
+      (index + 1) +
+      '</div>' +
+
+      '<div class="text">' +
+
+      (isRevealed
+        ? answer[0]
+        : "????????") +
+
+      '</div>' +
+
+      '<div class="points">' +
+
+      (isRevealed
+        ? answer[1] + " pts"
+        : "") +
+
+      '</div>';
+
+    container.appendChild(row);
+
+  });
+
+}
 
 </script>
 
