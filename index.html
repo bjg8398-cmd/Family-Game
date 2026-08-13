@@ -504,14 +504,14 @@ function playCorrectSound() {
   oscillator.frequency.setValueAtTime(660, audio.currentTime);
   oscillator.frequency.setValueAtTime(880, audio.currentTime + 0.12);
 
-  gain.gain.setValueAtTime(0.25, audio.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.01, audio.currentTime + 0.45);
+  gain.gain.setValueAtTime(0.5, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audio.currentTime + 0.8);
 
   oscillator.connect(gain);
   gain.connect(audio.destination);
 
   oscillator.start();
-  oscillator.stop(audio.currentTime + 0.45);
+  oscillator.stop(audio.currentTime + 0.8);
 }
 /* REVEAL ANSWER */
 
