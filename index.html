@@ -175,17 +175,21 @@ input {
   }
 }
 #fullscreenButton {
-    position: fixed;
-    bottom: 12px;
-    right: 12px;
-    background: rgba(255, 255, 255, 0.18);
-    color: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 5px 9px;
-    border-radius: 12px;
-    font-size: 11px;
-    z-index: 9999;
-    backdrop-filter: blur(4px);
+  position: fixed !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  left: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 5px 9px !important;
+  border-radius: 12px;
+  font-size: 11px !important;
+  font-weight: normal;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
 }
 </style>
 </head>
