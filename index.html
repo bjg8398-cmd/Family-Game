@@ -494,7 +494,25 @@ function showHostQuestion() {
 
 }
 
+function playCorrectSound() {
+  const audio = new (window.AudioContext || window.webkitAudioContext)();
 
+  const oscillator = audio.createOscillator();
+  const gain = audio.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.setValueAtTime(660, audio.currentTime);
+  oscillator.frequency.setValueAtTime(880, audio.currentTime + 0.12);
+
+  gain.gain.setValueAtTime(0.25, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audio.currentTime + 0.45);
+
+  oscillator.connect(gain);
+  gain.connect(audio.destination);
+
+  oscillator.start();
+  oscillator.stop(audio.currentTime + 0.45);
+}
 /* REVEAL ANSWER */
 
 function revealAnswer(index) {
@@ -502,6 +520,7 @@ function revealAnswer(index) {
   if (!revealed.includes(index)) {
 
     revealed.push(index);
+    playCorrectSound();
 
   }
 
@@ -528,7 +547,7 @@ function revealNext() {
       unrevealed[Math.floor(Math.random() * unrevealed.length)];
 
     revealed.push(randomIndex);
-
+playCorrectSound();
     updateFirebase();
 
   }
