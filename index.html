@@ -281,9 +281,6 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-
-/* QUESTIONS */
-
 const questions = [
 
   {
@@ -306,10 +303,53 @@ const questions = [
       ["Driving", 2],
       ["Bargaining", 1]
     ]
+  },
+
+  {
+    question: "Name 5 countries with the highest population after India and China",
+    answers: [
+      ["United States", 5],
+      ["Indonesia", 4],
+      ["Pakistan", 3],
+      ["Nigeria", 2],
+      ["Brazil", 1]
+    ]
+  },
+
+  {
+    question: "Name 5 next highest mountains on Earth after Mt. Everest and K2",
+    answers: [
+      ["Kangchenjunga", 5],
+      ["Lhotse", 4],
+      ["Makalu", 3],
+      ["Cho Oyu", 2],
+      ["Dhaulagiri I", 1]
+    ]
+  },
+
+  {
+    question: "Rank these animals by swimming speed — fastest first",
+    answers: [
+      ["Shark", 5],
+      ["Dolphin", 4],
+      ["Penguin", 3],
+      ["Seal", 2],
+      ["Piranha", 1]
+    ]
+  },
+
+  {
+    question: "Name 5 countries starting with A",
+    answers: [
+      ["Afghanistan", 5],
+      ["Albania", 4],
+      ["Algeria", 3],
+      ["Andorra", 2],
+      ["Angola", 1]
+    ]
   }
 
 ];
-
 
 let currentQuestion = 0;
 let revealed = [];
