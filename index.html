@@ -371,6 +371,9 @@ let isHost = false;
 function startHost() {
 
   isHost = true;
+    const music = document.getElementById("backgroundMusic");
+music.volume = 0.25;
+music.play();
 
   document.getElementById("menu").style.display = "none";
   document.getElementById("hostScreen").style.display = "block";
@@ -816,6 +819,6 @@ function wrongAnswer() {
 }
 
 </script>
-
+<audio id="backgroundMusic" src="family_quiz_background_music_upbeat.wav" loop preload="auto"></audio>
 </body>
 </html>
