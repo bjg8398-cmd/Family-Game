@@ -47,6 +47,29 @@ top: 8px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+ 
+h1::before,
+h1::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFD166;
+    font-size: 22px;
+    text-shadow:
+        0 0 8px #00e5ff,
+        0 0 16px #FFD166;
+}
+
+h1::before {
+    content: "✦";
+    left: -38px;
+}
+
+h1::after {
+    content: "✦";
+    right: -38px;
+}
+
 .game-subtitle {
     font-size: 22px;
     font-weight: bold;
