@@ -231,7 +231,7 @@ input {
       <button onclick="nextQuestion()">Next ➡</button>
       <button onclick="revealNext()">Reveal Answer</button>
 <button onclick="wrongAnswer()">❌ WRONG ANSWER</button>
-    </div> </div>
+  <button onclick="toggleMusic()">🎵 MUSIC ON</button>  </div> </div>
 
   </div>
 
@@ -372,7 +372,7 @@ function startHost() {
 
   isHost = true;
     const music = document.getElementById("backgroundMusic");
-music.volume = 0.25;
+music.volume = 0.20;
 music.play();
 
   document.getElementById("menu").style.display = "none";
@@ -816,6 +816,19 @@ function wrongAnswer() {
   } else if (element.webkitRequestFullscreen) {
     element.webkitRequestFullscreen();
   }
+}
+
+function toggleMusic() {
+    const music = document.getElementById("backgroundMusic");
+    const button = document.querySelector('#hostControls button[onclick="toggleMusic()"]');
+
+    if (music.paused) {
+        music.play();
+        button.textContent = "🎵 MUSIC ON";
+    } else {
+        music.pause();
+        button.textContent = "🔇 MUSIC OFF";
+    }
 }
 
 </script>
