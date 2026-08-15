@@ -261,7 +261,38 @@ input {
     background-position: center;
     background-repeat: no-repeat;
 }
-}</style>
+#questionManager {
+    margin: 20px auto;
+    padding: 18px;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 15px;
+}
+
+#questionManager h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#questionManager input {
+    width: 90%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#questionManager button {
+    margin-top: 12px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}}</style>
 </head>
 
 <body>
@@ -296,7 +327,28 @@ input {
   <button onclick="toggleMusic()">🎵 MUSIC ON</button>  </div> </div>
 
   </div>
+<div id="questionManager">
+    <h3>QUESTION MANAGER</h3>
 
+    <input id="questionInput" placeholder="Type your question">
+
+    <input id="answer1Input" placeholder="Answer 1">
+    <input id="points1Input" type="number" value="5">
+
+    <input id="answer2Input" placeholder="Answer 2">
+    <input id="points2Input" type="number" value="4">
+
+    <input id="answer3Input" placeholder="Answer 3">
+    <input id="points3Input" type="number" value="3">
+
+    <input id="answer4Input" placeholder="Answer 4">
+    <input id="points4Input" type="number" value="2">
+
+    <input id="answer5Input" placeholder="Answer 5">
+    <input id="points5Input" type="number" value="1">
+
+    <button onclick="saveQuestion()">SAVE QUESTION</button>
+</div>
   <div id="audienceScreen" class="screen" style="display:none;">
 
     <div id="joinArea">
@@ -426,8 +478,53 @@ let currentQuestion = 0;
 let revealed = [];
 let gameCode = "";
 let isHost = false;
+function saveQuestion() {
+    const question = document.getElementById("questionInput").value.trim();
 
+    if (!question) {
+        alert("Please enter a question.");
+        return;
+    }
 
+    const answers = [];
+
+    for (let i = 1; i <= 5; i++) {
+        const answer = document.getElementById("answer" + i + "Input").value.trim();
+        const points = Number(document.getElementById("points" + i + "Input").value);
+
+        if (answer) {
+            answers.push([answer, points]);
+        }
+    }
+
+    if (answers.length === 0) {
+        alert("Please enter at least one answer.");
+        return;
+    }
+
+    questions.push({
+        question: question,
+        answers: answers
+    });
+
+    localStorage.setItem("familyQuizQuestions", JSON.stringify(questions));
+
+    alert("Question saved!");
+
+    document.getElementById("questionInput").value = "";
+
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById("answer" + i + "Input").value = "";
+    }
+}
+const savedQuestions = localStorage.getItem("familyQuizQuestions");
+
+if (savedQuestions) {
+    const saved = JSON.parse(savedQuestions);
+    if (Array.isArray(saved)) {
+        questions.push(...saved);
+    }
+}
 /* SCREEN SELECTION */
 
 function startHost() {
