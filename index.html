@@ -559,8 +559,21 @@ function showHostQuestion() {
 
 }
 
-function playCorrectSound() {
-  const audio = new (window.AudioContext || window.webkitAudioContext)();
+let gameAudio;
+
+function getGameAudio() {
+    if (!gameAudio) {
+        gameAudio = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    if (gameAudio.state === "suspended") {
+        gameAudio.resume();
+    }
+
+    return gameAudio;
+}
+    function playCorrectSound() {
+  const audio = getGameAudio();
 
   const oscillator = audio.createOscillator();
   const gain = audio.createGain();
@@ -837,7 +850,7 @@ function wrongAnswer() {
   playWrongSound();
   }
   function playWrongSound() {
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  const audioContext = getGameAudio();
   const oscillator = audioContext.createOscillator();
   const gain = audioContext.createGain();
 
