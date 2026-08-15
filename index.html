@@ -348,6 +348,9 @@ input {
     <input id="points5Input" type="number" value="1">
 
     <button onclick="saveQuestion()">SAVE QUESTION</button>
+<div id="savedQuestions">
+    <h3>SAVED QUESTIONS</h3>
+</div>
 </div>
   <div id="audienceScreen" class="screen" style="display:none;">
 
@@ -473,11 +476,13 @@ const questions = [
   }
 
 ];
-
+builtInQuestionCount = questions.length;
 let currentQuestion = 0;
 let revealed = [];
 let gameCode = "";
 let isHost = false;
+let editingQuestionIndex = -1;
+let builtInQuestionCount = 0;
 function saveQuestion() {
     const question = document.getElementById("questionInput").value.trim();
 
@@ -502,10 +507,18 @@ function saveQuestion() {
         return;
     }
 
+    if (editingQuestionIndex >= 0) {
+    questions[editingQuestionIndex] = {
+        question: question,
+        answers: answers
+    };
+    editingQuestionIndex = -1;
+} else {
     questions.push({
         question: question,
         answers: answers
     });
+    }
 
     localStorage.setItem("familyQuizQuestions", JSON.stringify(questions));
 
@@ -525,6 +538,60 @@ if (savedQuestions) {
         questions.push(...saved);
     }
 }
+function renderSavedQuestions() {
+    const container = document.getElementById("savedQuestions");
+    const savedQuestions = localStorage.getItem("familyQuizQuestions");
+
+    if (!savedQuestions) {
+        container.innerHTML = "<h3>SAVED QUESTIONS</h3><p>No saved questions yet.</p>";
+        return;
+    }
+
+    const saved = JSON.parse(savedQuestions);
+
+    let html = "<h3>SAVED QUESTIONS</h3>";
+
+    saved.forEach((item, index) => {
+        html += `
+            <div>
+                <strong>${index + 1}. ${item.question}</strong>
+                <button onclick="editQuestion(${index})">EDIT</button>
+                <button onclick="deleteQuestion(${index})">DELETE</button>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+function editQuestion(index) {
+    const saved = JSON.parse(localStorage.getItem("familyQuizQuestions"));
+    const item = saved[index];
+
+    document.getElementById("questionInput").value = item.question;
+
+    item.answers.forEach((answer, i) => {
+        document.getElementById("answer" + (i + 1) + "Input").value = answer[0];
+        document.getElementById("points" + (i + 1) + "Input").value = answer[1];
+    });
+
+    editingQuestionIndex = questions.findIndex(q => q.question === item.question);
+
+    window.scrollTo(0, 0);
+}
+
+function deleteQuestion(index) {
+    const saved = JSON.parse(localStorage.getItem("familyQuizQuestions"));
+
+    if (!saved || !saved[index]) return;
+
+    saved.splice(index, 1);
+
+    localStorage.setItem("familyQuizQuestions", JSON.stringify(saved));
+
+    renderSavedQuestions();
+}
+
 /* SCREEN SELECTION */
 
 function startHost() {
