@@ -415,217 +415,218 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 const questions = [
-{
-  question: "Name 5 best dancers from the Funny Family.",
-  answers: [
-    ["Nyisher", 5],
-    ["Menkhu", 4],
-    ["Riksang", 3],
-    ["Bijay", 2],
-    ["Uncle G", 1]
-  ]
-},
-{
-  question: "Name 5 things they like to do on their day off.",
-  answers: [
-    ["Sleep", 5],
-    ["Go out or Walking", 4],
-    ["Eating", 3],
-    ["Cleaning", 2],
-    ["Laundry", 1]
-  ]
-},
-{
-  question: "Name 5 things they love to eat for breakfast.",
-  answers: [
-    ["Zeera biscuit", 5],
-    ["Croissant", 4],
-    ["Vena Roti", 3],
-    ["Aalu poori", 2],
-    ["Almond Croissant", 1]
-  ]
-},
-{
-  question: "Name 5 things that come to your mind when you think of winter.",
-  answers: [
-    ["Snow", 5],
-    ["Jacket", 4],
-    ["Christmas", 3],
-    ["Ice", 2],
-    ["Cold", 1]
-  ]
-},
-{
-  question: "Name 5 things you love to drink.",
-  answers: [
-    ["Juice", 5],
-    ["Soju", 4],
-    ["Water", 3],
-    ["Wine", 2],
-    ["Beer", 1]
-  ]
-},
-{
-  question: "Name 5 Bollywood movies you love.",
-  answers: [
-    ["Himalaya ki god mein", 5],
-    ["Karz", 4],
-    ["Do Jasoos", 3],
-    ["Disco Dancer", 2],
-    ["Surakshya", 1]
-  ]
-},
-{
-  question: "Name 5 countries you would love to visit.",
-  answers: [
-    ["Thailand", 5],
-    ["France", 4],
-    ["Nepal", 3],
-    ["Singapore", 2],
-    ["South Korea", 1]
-  ]
-},
-{
-  question: "Name 5 of your favorite fruits.",
-  answers: [
-    ["Mango", 5],
-    ["Kiwi", 4],
-    ["Strawberry", 3],
-    ["Lychee", 2],
-    ["Pomegranate", 1]
-  ]
-},
-{
-  question: "Name 5 of your favorite actors.",
-  answers: [
-    ["Matthew McConough", 5],
-    ["Matt Damon", 4],
-    ["Jessica Chastain", 3],
-    ["Dayahang Rai", 2],
-    ["Vikrant Maskey", 1]
-  ]
-},
-{
-  question: "Name 5 animals that look cute.",
-  answers: [
-    ["Dog", 5],
-    ["Panda", 4],
-    ["Rabbit", 3],
-    ["Cat", 2],
-    ["Squirrel", 1]
-  ]
-},
-{
-  question: "Name 5 actors you don't like.",
-  answers: [
-    ["Ranbir Kapoor", 5],
-    ["Salman Khan", 4],
-    ["Ranveer Singh", 3],
-    ["Rashmika", 2],
-    ["David", 1]
-  ]
-},
-{
-  question: "Name 5 things you think Nyisher is good at.",
-  answers: [
-    ["Soccer", 5],
-    ["Pitai (Smack)", 4],
-    ["Cleaning", 3],
-    ["Dancing", 2],
-    ["Singing", 1]
-  ]
-},
-{
-  question: "Name 5 of your favorite actors.",
-  answers: [
-    ["ShahRukh Khan", 5],
-    ["Dev Patel", 4],
-    ["Ranbir Kapoor", 3],
-    ["Dipika Padukone", 2],
-    ["Lee min ho", 1]
-  ]
-},
-{
-  question: "Name 5 things you do better than your partner.",
-  answers: [
-    ["Singing", 5],
-    ["Washing/cleaning", 4],
-    ["Smiling", 3],
-    ["Eating", 2],
-    ["Drawing", 1]
-  ]
-},
-{
-  question: "Name 5 of your favorite fruits.",
-  answers: [
-    ["Peach", 5],
-    ["Orange", 4],
-    ["Grapes", 3],
-    ["Apple", 2],
-    ["Grapefruit", 1]
-  ]
-},
-{
-  question: "Name 5 things you love to do in summer.",
-  answers: [
-    ["Beach", 5],
-    ["Swimming / Pool", 4],
-    ["Picnic", 3],
-    ["Hiking", 2],
-    ["Walking", 1]
-  ]
-},
-{
-  question: "Name 5 countries you would love to visit.",
-  answers: [
-    ["Morocco", 5],
-    ["Switzerland", 4],
-    ["Thailand", 3],
-    ["Australia", 2],
-    ["Vietnam", 1]
-  ]
-},
-{
-  question: "Name 5 dishes you love to make.",
-  answers: [
-    ["Fried Rice", 5],
-    ["Ramen", 4],
-    ["Sausage Fry", 3],
-    ["Dal", 2],
-    ["Omelette", 1]
-  ]
-},
-{
-  question: "Name 5 things you love to eat for breakfast.",
-  answers: [
-    ["Avocado toast", 5],
-    ["Cereal", 4],
-    ["Bacon, Egg and cheese s/w", 3],
-    ["Fried Rice", 2],
-    ["Bagel", 1]
-  ]
-},
-{
-  question: "Name 5 most famous places in Nepal.",
-  answers: [
-    ["Baudha", 5],
-    ["Swayambhu", 4],
-    ["Pokhara", 3],
-    ["Lumbini", 2],
-    ["Manang", 1]
-  ]
-},
-{
-  question: "Name 5 animals that do not look cute.",
-  answers: [
-    ["Sloth", 5],
-    ["Donkey", 4],
-    ["Goat", 3],
-    ["Snake", 2],
-    ["Rat", 1]
-  ]
-}
+  {
+    question: "We asked Family: Name 5 best dancers from the Funny Family.",
+    answers: [
+      ["Nyisher", 5],
+      ["Menkhu", 4],
+      ["Riksang", 3],
+      ["Bijay", 2],
+      ["Uncle G", 1]
+    ]
+  },
+  {
+    question: "We asked Family: Name 5 things they like to do on their day off.",
+    answers: [
+      ["Sleep", 5],
+      ["Go out or Walking", 4],
+      ["Eating", 3],
+      ["Cleaning", 2],
+      ["Laundry", 1]
+    ]
+  },
+  {
+    question: "We asked Laxmi: Name 5 things they love to eat for breakfast.",
+    answers: [
+      ["Zeera biscuit", 5],
+      ["Croissant", 4],
+      ["Vena Roti", 3],
+      ["Aalu poori", 2],
+      ["Almond Croissant", 1]
+    ]
+  },
+  {
+    question: "We asked Blake: Name 5 things that come to your mind when you think of winter.",
+    answers: [
+      ["Snow", 5],
+      ["Jacket", 4],
+      ["Christmas", 3],
+      ["Ice", 2],
+      ["Cold", 1]
+    ]
+  },
+  {
+    question: "We asked Family: Name 5 things you love to drink.",
+    answers: [
+      ["Juice", 5],
+      ["Soju", 4],
+      ["Water", 3],
+      ["Wine", 2],
+      ["Beer", 1]
+    ]
+  },
+  {
+    question: "We asked Uncle Ji: Name 5 Bollywood movies you love.",
+    answers: [
+      ["Himalaya ki god mein", 5],
+      ["Karz", 4],
+      ["Do Jasoos", 3],
+      ["Disco Dancer", 2],
+      ["Surakshya", 1]
+    ]
+  },
+  {
+    question: "We asked Shreya: Name 5 countries you would love to visit.",
+    answers: [
+      ["Thailand", 5],
+      ["France", 4],
+      ["Nepal", 3],
+      ["Singapore", 2],
+      ["South Korea", 1]
+    ]
+  },
+  {
+    question: "We asked Shreya: Name 5 of your favorite fruits.",
+    answers: [
+      ["Mango", 5],
+      ["Kiwi", 4],
+      ["Strawberry", 3],
+      ["Lychee", 2],
+      ["Pomegranate", 1]
+    ]
+  },
+  {
+    question: "We asked Nyisher: Name 5 of your favorite actors.",
+    answers: [
+      ["Matthew McConough", 5],
+      ["Matt Damon", 4],
+      ["Jessica Chastain", 3],
+      ["Dayahang Rai", 2],
+      ["Vikrant Maskey", 1]
+    ]
+  },
+  {
+    question: "We asked Family: Name 5 animals that look cute.",
+    answers: [
+      ["Dog", 5],
+      ["Panda", 4],
+      ["Rabbit", 3],
+      ["Cat", 2],
+      ["Squirrel", 1]
+    ]
+  },
+  {
+    question: "We asked Menkhu, Ata Sunil, Nyisher: Name 5 actors you don't like.",
+    answers: [
+      ["Ranbir Kapoor", 5],
+      ["Salman Khan", 4],
+      ["Ranveer Singh", 3],
+      ["Rashmika", 2],
+      ["David", 1]
+    ]
+  },
+  {
+    question: "We asked Karten: Name 5 things you think Nyisher is good at.",
+    answers: [
+      ["Soccer", 5],
+      ["Pitai (Smack)", 4],
+      ["Cleaning", 3],
+      ["Dancing", 2],
+      ["Singing", 1]
+    ]
+  },
+  {
+    question: "We asked Menkhu: Name 5 of your favorite actors.",
+    answers: [
+      ["ShahRukh Khan", 5],
+      ["Dev Patel", 4],
+      ["Ranbir Kapoor", 3],
+      ["Dipika Padukone", 2],
+      ["Lee min ho", 1]
+    ]
+  },
+  {
+    question: "We asked Ata Sunil: Name 5 things you do better than your partner.",
+    answers: [
+      ["Singing", 5],
+      ["Washing/cleaning", 4],
+      ["Smiling", 3],
+      ["Eating", 2],
+      ["Drawing", 1]
+    ]
+  },
+  {
+    question: "We asked Ata Sunil, Nyisher: Name 5 of your favorite fruits.",
+    answers: [
+      ["Peach", 5],
+      ["Orange", 4],
+      ["Grapes", 3],
+      ["Apple", 2],
+      ["Grapefruit", 1]
+    ]
+  },
+  {
+    question: "We asked Menkhu: Name 5 things you love to do in summer.",
+    answers: [
+      ["Beach", 5],
+      ["Swimming / Pool", 4],
+      ["Picnic", 3],
+      ["Hiking", 2],
+      ["Walking", 1]
+    ]
+  },
+  {
+    question: "We asked Nyisher: Name 5 countries you would love to visit.",
+    answers: [
+      ["Morocco", 5],
+      ["Switzerland", 4],
+      ["Thailand", 3],
+      ["Australia", 2],
+      ["Vietnam", 1]
+    ]
+  },
+  {
+    question: "We asked Tenjing: Name 5 dishes you love to make.",
+    answers: [
+      ["Fried Rice", 5],
+      ["Ramen", 4],
+      ["Sausage Fry", 3],
+      ["Dal", 2],
+      ["Omelette", 1]
+    ]
+  },
+  {
+    question: "We asked Blake: Name 5 things you love to eat for breakfast.",
+    answers: [
+      ["Avocado toast", 5],
+      ["Cereal", 4],
+      ["Bacon, Egg and cheese s/w", 3],
+      ["Fried Rice", 2],
+      ["Bagel", 1]
+    ]
+  },
+  {
+    question: "We asked Nyisher: Name 5 most famous places in Nepal.",
+    answers: [
+      ["Baudha", 5],
+      ["Swayambhu", 4],
+      ["Pokhara", 3],
+      ["Lumbini", 2],
+      ["Manang", 1]
+    ]
+  },
+  {
+    question: "We asked Menkhu: Name 5 animals that do not look cute.",
+    answers: [
+      ["Sloth", 5],
+      ["Donkey", 4],
+      ["Goat", 3],
+      ["Snake", 2],
+      ["Rat", 1]
+    ]
+  }
 ];
+
 builtInQuestionCount = questions.length;
 let currentQuestion = 0;
 let revealed = [];
