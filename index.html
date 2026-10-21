@@ -822,7 +822,7 @@ console.log("createGame() started");
   revealed = [];
 
   const gameRef = db.ref("familyGames/" + gameCode);
-
+alert("Game code generated: " + gameCode);
   gameRef.set({
 
     currentQuestion: 0,
