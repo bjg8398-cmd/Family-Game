@@ -832,8 +832,10 @@ function createGame() {
   })
   .then(() => {
 
-    document.getElementById("gameCode").textContent =
-      "GAME CODE: " + gameCode;
+    const codeBox = document.getElementById("gameCode");
+codeBox.textContent = "GAME CODE: " + gameCode;
+codeBox.style.display = "block";
+codeBox.style.visibility = "visible";
 
     document.getElementById("status").textContent =
       "Waiting for audience...";
