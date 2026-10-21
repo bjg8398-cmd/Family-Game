@@ -814,15 +814,13 @@ function startAudience() {
 /* CREATE GAME */
 
 function createGame() {
-alert("createGame() is running");
-console.log("createGame() started");
   gameCode =
     Math.floor(100000 + Math.random() * 900000).toString();
 
   revealed = [];
 
   const gameRef = db.ref("familyGames/" + gameCode);
-alert("Game code generated: " + gameCode);
+
   gameRef.set({
 
     currentQuestion: 0,
