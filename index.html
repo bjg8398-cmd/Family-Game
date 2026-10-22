@@ -821,7 +821,9 @@ function createGame() {
   revealed = [];
 
   const gameRef = db.ref("familyGames/" + gameCode);
-
+setTimeout(() => {
+    alert("Firebase is taking too long to respond.");
+}, 5000);
   gameRef.set({
 
     currentQuestion: 0,
